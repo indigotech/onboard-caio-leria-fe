@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		4D9C03282F0D785D0042C77C /* OnboardCaioLeria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnboardCaioLeria.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D9C03282F0D785D0042C77C /* OnboardCaioLeria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = OnboardCaioLeria.app; path = "/Users/taqtile/onboard-caio-leria-fe/OnboardCaioLeria/build/Debug/OnboardCaioLeria.app"; sourceTree = "<absolute>"; };
+		4DB80E612F0ED0A0009F6120 /* .swiftlint.auto.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.auto.yml; sourceTree = "<group>"; };
+		4DB80E632F0ED10F009F6120 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4D9C032A2F0D785D0042C77C /* onboard-caio-leria */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-<<<<<<< HEAD
 			path = OnboardCaioLeria;
 /* Begin PBXBuildFile section */
 		4DB80E5E2F0ECCD1009F6120 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DB80E5B2F0ECCD1009F6120 /* Assets.xcassets */; };
@@ -34,8 +35,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4D9C032A2F0D785D0042C77C /* onboard-caio-leria */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-=======
->>>>>>> 540427c (Setting SwiftFormat)
 			path = "onboard-caio-leria";
 			sourceTree = "<group>";
 		};
@@ -55,8 +54,9 @@
 		4D9C031F2F0D785D0042C77C = {
 			isa = PBXGroup;
 			children = (
+				4DB80E612F0ED0A0009F6120 /* .swiftlint.auto.yml */,
+				4DB80E632F0ED10F009F6120 /* .swiftlint.yml */,
 				4D9C032A2F0D785D0042C77C /* onboard-caio-leria */,
-				4D9C03292F0D785D0042C77C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,7 +85,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D9C03332F0D785E0042C77C /* Build configuration list for PBXNativeTarget "OnboardCaioLeria" */;
 			buildPhases = (
-				4DD11C322F0EC4CB00AA69E3 /* SwiftForm */,
 				4D9C03242F0D785D0042C77C /* Sources */,
 				4DD11C322F0EC4CB00AA69E3 /* SwiftForm */,
 				4DD11C332F0ECB4B00AA69E3 /* SwiftLint */,
@@ -97,10 +96,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-<<<<<<< HEAD
 				4D9C032A2F0D785D0042C77C /* OnboardCaioLeria */,
-=======
->>>>>>> 540427c (Setting SwiftFormat)
 				4D9C032A2F0D785D0042C77C /* onboard-caio-leria */,
 			);
 			name = OnboardCaioLeria;
@@ -177,6 +173,9 @@
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin:/usr/local/bin\"\n\nif which swiftformat >/dev/null; then\n  swiftformat  --swiftversion 5\nelse\n  echo \"warning: SwiftFormat not installed\"\nfi\n";
 		};
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> bfffcec (Setting SwiftLint)
 		4DD11C332F0ECB4B00AA69E3 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -196,8 +195,11 @@
 			shellPath = /bin/sh;
 			shellScript = "\nexport PATH=\"/opt/homebrew/bin:/usr/local/bin:/opt/homebrew/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed. Please run 'brew install swiftlint' in your terminal.\"\nfi\n";
 		};
+<<<<<<< HEAD
 =======
 >>>>>>> 540427c (Setting SwiftFormat)
+=======
+>>>>>>> bfffcec (Setting SwiftLint)
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */

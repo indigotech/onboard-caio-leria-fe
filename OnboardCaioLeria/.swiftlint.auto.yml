@@ -1,0 +1,18 @@
+only_rules:
+  - closing_brace
+  - colon
+  - comma
+  - control_statement
+  - leading_whitespace
+  - no_space_in_method_call
+  - opening_brace
+  - redundant_optional_initialization
+  - trailing_comma
+  - trailing_newline
+  - trailing_semicolon
+  - trailing_whitespace
+  - vertical_whitespace
+
+excluded:
+  - Pods
+
