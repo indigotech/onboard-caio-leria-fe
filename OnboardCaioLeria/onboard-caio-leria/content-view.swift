@@ -5,7 +5,7 @@ struct ContentView: View {
         Text("Hello, World!")
     }
 }
+
 #Preview {
     ContentView()
 }
-
