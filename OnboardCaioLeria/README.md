@@ -9,6 +9,19 @@ Swift version: 5
 SwiftLint
 SwiftFormat
 
+How to run
+
+install swiftformat and swiftlint
+
+Terminal: brew install swiftformat swiftlint
+
+git clone https://github.com/indigotech/onboard-caio-leria-fe.git
+
+on Xcode > command + b > command + r
+
+
+
+
 
 
 
