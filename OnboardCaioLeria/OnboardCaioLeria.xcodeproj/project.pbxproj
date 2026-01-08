@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		4D9C03282F0D785D0042C77C /* OnboardCaioLeria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = OnboardCaioLeria.app; path = "/Users/taqtile/onboard-caio-leria-fe/OnboardCaioLeria/build/Debug/OnboardCaioLeria.app"; sourceTree = "<absolute>"; };
+		4D1F9F412F1061B8009E898B /* OnboardCaioLeria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnboardCaioLeria.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D1F9F492F106302009E898B /* .swiftFormat */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = .swiftFormat; sourceTree = "<group>"; };
 		4DB80E612F0ED0A0009F6120 /* .swiftlint.auto.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.auto.yml; sourceTree = "<group>"; };
-		4DB80E632F0ED10F009F6120 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		4DB80E632F0ED10F009F6120 /* .swiftLint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftLint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -54,9 +55,11 @@
 		4D9C031F2F0D785D0042C77C = {
 			isa = PBXGroup;
 			children = (
+				4D1F9F492F106302009E898B /* .swiftFormat */,
 				4DB80E612F0ED0A0009F6120 /* .swiftlint.auto.yml */,
-				4DB80E632F0ED10F009F6120 /* .swiftlint.yml */,
+				4DB80E632F0ED10F009F6120 /* .swiftLint.yml */,
 				4D9C032A2F0D785D0042C77C /* onboard-caio-leria */,
+				4D1F9F412F1061B8009E898B /* OnboardCaioLeria.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,7 +106,7 @@
 			packageProductDependencies = (
 			);
 			productName = OnboardCaioLeria;
-			productReference = 4D9C03282F0D785D0042C77C /* OnboardCaioLeria.app */;
+			productReference = 4D1F9F412F1061B8009E898B /* OnboardCaioLeria.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
