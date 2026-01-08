@@ -1,27 +1,25 @@
-Onboarding - Caio Leria ☕️
+# Onboarding - Caio Leria ☕️
 
 This project marks the beginning of my journey with Taqtile. In this project, I'll explore the basic concepts of programming using Swift and become familiarized with this programming language. 
 
-Environment and tools
+##Environment and tools
 
-Xcode version: 26.1
-Swift version: 5 
-SwiftLint
-SwiftFormat
+- Xcode version: 26.1
+- Swift version: 5 
+- SwiftLint
+- SwiftFormat
 
-How to run
+##How to run
 
-install swiftformat and swiftlint
-
-Terminal: brew install swiftformat swiftlint
-
+- Install swiftformat and swiftlint
+```bash
+brew install swiftformat swiftlint
+```
+- clone the repository
+```bas
 git clone https://github.com/indigotech/onboard-caio-leria-fe.git
-
-on Xcode > command + b > command + r
-
-
-
-
-
-
-
+```
+- open Xcode
+- on Xcode 
+    - Build: <kbd>⌘</kbd> + <kbd>B</kbd>
+    - Run: <kbd>⌘</kbd> + <kbd>R</kbd>
