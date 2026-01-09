@@ -175,10 +175,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin:/usr/local/bin\"\n\nif which swiftformat >/dev/null; then\n  swiftformat  --swiftversion 5\nelse\n  echo \"warning: SwiftFormat not installed\"\nfi\n";
 		};
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> bfffcec (Setting SwiftLint)
+
 		4DD11C332F0ECB4B00AA69E3 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -198,11 +195,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\nexport PATH=\"/opt/homebrew/bin:/usr/local/bin:/opt/homebrew/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed. Please run 'brew install swiftlint' in your terminal.\"\nfi\n";
 		};
-<<<<<<< HEAD
-=======
->>>>>>> 540427c (Setting SwiftFormat)
-=======
->>>>>>> bfffcec (Setting SwiftLint)
+
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
