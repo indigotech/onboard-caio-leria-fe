@@ -9,21 +9,6 @@
 /* Begin PBXFileReference section */
 		4D1F9F412F1061B8009E898B /* OnboardCaioLeria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnboardCaioLeria.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D1F9F492F106302009E898B /* .swiftFormat */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = .swiftFormat; sourceTree = "<group>"; };
-		4DB80E612F0ED0A0009F6120 /* .swiftlint.auto.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.auto.yml; sourceTree = "<group>"; };
-		4DB80E632F0ED10F009F6120 /* .swiftLint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftLint.yml; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		4D9C032A2F0D785D0042C77C /* onboard-caio-leria */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = OnboardCaioLeria;
-/* Begin PBXBuildFile section */
-		4DB80E5E2F0ECCD1009F6120 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DB80E5B2F0ECCD1009F6120 /* Assets.xcassets */; };
-		4DB80E5F2F0ECCD1009F6120 /* content-view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB80E5C2F0ECCD1009F6120 /* content-view.swift */; };
-		4DB80E602F0ECCD1009F6120 /* hello-world.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB80E5D2F0ECCD1009F6120 /* hello-world.swift */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXFileReference section */
 		4D9C03282F0D785D0042C77C /* OnboardCaioLeria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = OnboardCaioLeria.app; path = "/Users/taqtile/onboard-caio-leria-fe/OnboardCaioLeria/build/Debug/OnboardCaioLeria.app"; sourceTree = "<absolute>"; };
 		4DB80E5B2F0ECCD1009F6120 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DB80E5C2F0ECCD1009F6120 /* content-view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "content-view.swift"; sourceTree = "<group>"; };
@@ -55,30 +40,25 @@
 		4D9C031F2F0D785D0042C77C = {
 			isa = PBXGroup;
 			children = (
-				4D1F9F492F106302009E898B /* .swiftFormat */,
-				4DB80E612F0ED0A0009F6120 /* .swiftlint.auto.yml */,
-				4DB80E632F0ED10F009F6120 /* .swiftLint.yml */,
-				4D9C032A2F0D785D0042C77C /* onboard-caio-leria */,
-				4D1F9F412F1061B8009E898B /* OnboardCaioLeria.app */,
-			);
-			sourceTree = "<group>";
-		};
-		4D9C03292F0D785D0042C77C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4D9C03282F0D785D0042C77C /* OnboardCaioLeria.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 				4DB80E652F0ED997009F6120 /* README.md */,
+				4D1F9F492F106302009E898B /* .swiftFormat */,
 				4DB80E612F0ED0A0009F6120 /* .swiftlint.auto.yml */,
 				4DB80E632F0ED10F009F6120 /* .swiftlint.yml */,
 				4DB80E5C2F0ECCD1009F6120 /* content-view.swift */,
 				4DB80E5D2F0ECCD1009F6120 /* hello-world.swift */,
 				4DB80E5B2F0ECCD1009F6120 /* Assets.xcassets */,
 				4D9C032A2F0D785D0042C77C /* onboard-caio-leria */,
+				4D9C03292F0D785D0042C77C /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		4D9C03292F0D785D0042C77C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4D1F9F412F1061B8009E898B /* OnboardCaioLeria.app */,
+				4D9C03282F0D785D0042C77C /* OnboardCaioLeria.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,7 +79,6 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				4D9C032A2F0D785D0042C77C /* OnboardCaioLeria */,
 				4D9C032A2F0D785D0042C77C /* onboard-caio-leria */,
 			);
 			name = OnboardCaioLeria;
@@ -135,7 +114,6 @@
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4D9C03292F0D785D0042C77C /* Products */;
-			productRefGroup = 4D9C031F2F0D785D0042C77C;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -149,7 +127,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DB80E5E2F0ECCD1009F6120 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,7 +152,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin:/usr/local/bin\"\n\nif which swiftformat >/dev/null; then\n  swiftformat  --swiftversion 5\nelse\n  echo \"warning: SwiftFormat not installed\"\nfi\n";
 		};
-
 		4DD11C332F0ECB4B00AA69E3 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -195,7 +171,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\nexport PATH=\"/opt/homebrew/bin:/usr/local/bin:/opt/homebrew/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed. Please run 'brew install swiftlint' in your terminal.\"\nfi\n";
 		};
-
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -203,8 +178,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DB80E5F2F0ECCD1009F6120 /* content-view.swift in Sources */,
-				4DB80E602F0ECCD1009F6120 /* hello-world.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,14 +318,12 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.1;
 				MARKETING_VERSION = 1.0;
-				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.taqtile.OnboardCaioLeria;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -389,14 +360,12 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.1;
 				MARKETING_VERSION = 1.0;
-				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.taqtile.OnboardCaioLeria;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;

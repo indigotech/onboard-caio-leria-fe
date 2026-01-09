@@ -15,9 +15,9 @@ struct ContentView: View {
             text: $username
            )
            .border(Color.gray)
-            
         }
-        .padding()
+        .padding(.horizontal)
+        .padding(.bottom, 2)
         VStack {
             Text("Password")
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -28,7 +28,8 @@ struct ContentView: View {
             )
             .border(Color.gray)
         }
-        .padding()
+        .padding(.horizontal)
+        .padding(.bottom, 2)
         VStack {
             Button("Login") {
             }
