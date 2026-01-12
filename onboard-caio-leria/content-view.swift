@@ -6,6 +6,7 @@ struct ContentView: View {
     var body: some View {
         Text("Bem vindo(a) à Taqtile!")
             .font(.largeTitle).fontWeight(.bold)
+        
         VStack {
             Text("Login")
                 .frame(maxWidth: .infinity, alignment: .leading)
