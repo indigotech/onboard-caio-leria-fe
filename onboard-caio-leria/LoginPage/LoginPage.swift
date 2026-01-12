@@ -14,7 +14,7 @@ struct LoginView: View {
             TextField(
                 "seuemail@email.com",
                 text: $viewModel.email
-           )
+                )
            .border(Color.gray)
            .foregroundStyle(.black)
         }
@@ -27,7 +27,7 @@ struct LoginView: View {
                 .font(.title2)
             SecureField(
                 "Password",
-                text: $viewModel.password,
+                text: $viewModel.password
         
             )
             .border(Color.gray)
