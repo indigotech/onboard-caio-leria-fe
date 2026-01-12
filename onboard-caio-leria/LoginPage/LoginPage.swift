@@ -33,12 +33,15 @@ struct LoginView: View {
         .padding(.bottom, 2)
         VStack {
             Button("Login") {
-               $viewModel.login()
+               viewModel.login()
             }
             .frame(maxWidth: .infinity)
             .foregroundStyle(Color.white)
             .background(Color.blue)
             .padding(.horizontal)
+        }
+        if !viewModel.loginText.isEmpty {
+            Text(viewModel.loginText)
         }
     }
 }
