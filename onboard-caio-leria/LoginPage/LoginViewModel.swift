@@ -10,6 +10,7 @@ class LoginViewModel: ObservableObject {
     @Published var textError: String = ""
     @Published var isLoading: Bool = false
     @Published var isLoggedIn: Bool = false
+    
     let provider = MoyaProvider<LoginService>()
     
     var isPasswordValid: Bool {
@@ -18,7 +19,7 @@ class LoginViewModel: ObservableObject {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
         return passwordSize && passwordTest.evaluate(with: password) && !password.isEmpty
     }
-    
+ 
     var isEmailValid: Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
@@ -26,13 +27,14 @@ class LoginViewModel: ObservableObject {
     }
     
     func validatingCredentials() {
-        if !isEmailValid, !isPasswordValid {
+        if !isEmailValid && !isPasswordValid {
             validationErrorText = "Credenciais inválidas"
         } else if !isPasswordValid {
             validationErrorText = "Senha inválida"
         } else if !isEmailValid {
             validationErrorText = "Digite um email válido"
         } else {
+            validationErrorText = ""
             performLogin()
         }
     }
@@ -41,7 +43,9 @@ class LoginViewModel: ObservableObject {
         var loginData = Login()
         loginData.email = email
         loginData.password = password
-        isLoading=true
+        
+        isLoading = true
+        
         provider.request(.login(loginData)) { result in
             switch result {
             case .success(let response):
@@ -67,6 +71,7 @@ class LoginViewModel: ObservableObject {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.textError = error.localizedDescription
+                    self.isLoading = false
                 }
             }
         }
