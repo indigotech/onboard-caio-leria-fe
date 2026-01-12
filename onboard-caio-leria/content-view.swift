@@ -2,45 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-<<<<<<< HEAD
-        Text("Bem vindo(a) à Taqtile!")
-            .font(.largeTitle).fontWeight(.bold)
-        
-        VStack {
-            Text("Login")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.title2)
-           TextField(
-            "Login",
-            text: $username
-           )
-           .border(Color.gray)
-        }
-        .padding(.horizontal)
-        .padding(.bottom, 2)
-        VStack {
-            Text("Password")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.title2)
-            TextField(
-                "Password",
-                text: $password
-            )
-            .border(Color.gray)
-        }
-        .padding(.horizontal)
-        .padding(.bottom, 2)
-        VStack {
-            Button("Login") {
-            }
-            .frame(maxWidth: .infinity)
-            .foregroundStyle(Color.white)
-            .background(Color.blue)
-            .padding(.horizontal)
-        }
-=======
         LoginView()
->>>>>>> 87d2e7c (Separando login na pasta login e criando lógica de validação de email e senha)
     }
 }
 
