@@ -30,7 +30,7 @@ class LoginViewModel: ObservableObject {
             } else if !isPasswordValid {
                 validationErrorText = "Senha inválida"
             } else if !isEmailValid {
-                validationErrorText = "Email inválido"
+                validationErrorText = "Digite um email válido"
             }
         }
     }
