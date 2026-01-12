@@ -5,7 +5,7 @@ import Combine
 class LoginViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String  = ""
-    
+    @Published var loginText: String = ""
     var isPasswordValid: Bool {
         let passwordSize = password.count >= 7
         let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d).+$"
@@ -26,12 +26,11 @@ class LoginViewModel: ObservableObject {
     var isLoginEnable: Bool {
         isEmailEmpty == false && isPasswordEmpty == false && isEmailValid && isPasswordValid
     }
-    
-    func login () {
+    func login() {
         if isLoginEnable {
-            Text("Login Successful")
+            loginText = "Login feito com sucesso"
         } else{
-            Text("Login Failed")
+            loginText = "Login falhou"
         }
     }
 }
