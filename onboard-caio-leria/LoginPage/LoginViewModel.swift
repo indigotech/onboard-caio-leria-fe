@@ -8,6 +8,7 @@ class LoginViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var validationErrorText: String = ""
     @Published var textError: String = ""
+    
     let provider = MoyaProvider<LoginService>()
     
     var isPasswordValid: Bool {
@@ -24,13 +25,14 @@ class LoginViewModel: ObservableObject {
     }
     
     func validatingCredentials() {
-        if !isEmailValid, !isPasswordValid {
+        if !isEmailValid && !isPasswordValid {
             validationErrorText = "Credenciais inválidas"
         } else if !isPasswordValid {
             validationErrorText = "Senha inválida"
         } else if !isEmailValid {
             validationErrorText = "Digite um email válido"
         } else {
+            validationErrorText = ""
             performLogin()
         }
     }
@@ -48,6 +50,7 @@ class LoginViewModel: ObservableObject {
                         DispatchQueue.main.async {
                             self.textError = ""
                             UserDefaults.standard.set(user.data.token, forKey: "token")
+                            print("Login Successful!")
                         }
                     }
                 } else {
