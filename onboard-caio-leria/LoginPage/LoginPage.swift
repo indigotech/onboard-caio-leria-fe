@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct ContentView: View {
+struct LoginView: View {
+    @StateObject private var viewModel: LoginViewModel = LoginViewModel()
     var body: some View {
-<<<<<<< HEAD
         Text("Bem vindo(a) à Taqtile!")
             .font(.largeTitle).fontWeight(.bold)
         
@@ -10,11 +10,12 @@ struct ContentView: View {
             Text("Login")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .font(.title2)
-           TextField(
-            "Login",
-            text: $username
+            TextField(
+                "seuemail@email.com",
+                text: $viewModel.email
            )
            .border(Color.gray)
+           .foregroundStyle(.black)
         }
         .padding(.horizontal)
         .padding(.bottom, 2)
@@ -24,7 +25,7 @@ struct ContentView: View {
                 .font(.title2)
             TextField(
                 "Password",
-                text: $password
+                text: $viewModel.password
             )
             .border(Color.gray)
         }
@@ -32,18 +33,12 @@ struct ContentView: View {
         .padding(.bottom, 2)
         VStack {
             Button("Login") {
+               $viewModel.login()
             }
             .frame(maxWidth: .infinity)
             .foregroundStyle(Color.white)
             .background(Color.blue)
             .padding(.horizontal)
         }
-=======
-        LoginView()
->>>>>>> 87d2e7c (Separando login na pasta login e criando lógica de validação de email e senha)
     }
-}
-
-#Preview {
-    ContentView()
 }
