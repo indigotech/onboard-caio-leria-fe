@@ -3,6 +3,7 @@ import SwiftUI
 struct LoginView: View {
     @StateObject private var viewModel: LoginViewModel = LoginViewModel()
     var body: some View {
+        
         Text("Bem vindo(a) à Taqtile!")
             .font(.largeTitle).fontWeight(.bold)
         
@@ -19,6 +20,7 @@ struct LoginView: View {
         }
         .padding(.horizontal)
         .padding(.bottom, 2)
+        
         VStack {
             Text("Password")
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -33,6 +35,7 @@ struct LoginView: View {
         }
         .padding(.horizontal)
         .padding(.bottom, 2)
+        
         VStack {
             Button("Login") {
                viewModel.login()
@@ -42,8 +45,8 @@ struct LoginView: View {
             .background(Color.blue)
             .padding(.horizontal)
         }
-        if !viewModel.loginText.isEmpty {
-            Text(viewModel.loginText)
+        if !viewModel.validationErrorText.isEmpty {
+            Text(viewModel.validationErrorText)
         }
     }
 }
