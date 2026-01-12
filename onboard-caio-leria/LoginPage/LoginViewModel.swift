@@ -29,7 +29,7 @@ class LoginViewModel: ObservableObject {
     func login() {
         if isLoginEnable {
             loginText = "Login feito com sucesso"
-        } else{
+        } else {
             loginText = "Login falhou"
         }
     }

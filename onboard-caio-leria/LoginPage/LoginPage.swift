@@ -23,11 +23,13 @@ struct LoginView: View {
             Text("Password")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .font(.title2)
-            TextField(
+            SecureField(
                 "Password",
-                text: $viewModel.password
+                text: $viewModel.password,
+        
             )
             .border(Color.gray)
+           
         }
         .padding(.horizontal)
         .padding(.bottom, 2)
