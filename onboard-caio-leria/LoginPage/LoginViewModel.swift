@@ -49,13 +49,22 @@ class LoginViewModel: ObservableObject {
         urlRequest.httpBody = encoder
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        do{
-            let (data, _) = try await URLSession.shared.data(for: urlRequest)
-            let decoded = try JSONDecoder().decode(Login.LoginResponse.self, from: data)
-            login.token = decoded.data.token
-            UserDefaults.standard.set(login.token, forKey: "token")
+        do {
+            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            let httpResponse = response as? HTTPURLResponse
+            if httpResponse?.statusCode == 200 {
+                let decoded = try JSONDecoder().decode(Login.LoginResponse.self, from: data)
+                login.token = decoded.data.token
+                UserDefaults.standard.set(login.token, forKey: "token")
+            } else {
+                let decodedError = try JSONDecoder().decode(Login.LoginError.self, from: data)
+                await MainActor.run{
+                    let error = decodedError.errors?.first?.message
+                    textError = "erro:\(error)"
+                }
+            }
         } catch {
-            textError = ("Erro ao auntenticar: \(error.localizedDescription)")
+            print(textError)
         }
     }
 }
