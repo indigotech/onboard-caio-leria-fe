@@ -6,13 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4D13A5FB2F16DB7E008A566A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 4D13A5FA2F16DB7E008A566A /* Moya */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		4D1F9F412F1061B8009E898B /* OnboardCaioLeria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnboardCaioLeria.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D1F9F492F106302009E898B /* .swiftFormat */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = .swiftFormat; sourceTree = "<group>"; };
 		4D9C03282F0D785D0042C77C /* OnboardCaioLeria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = OnboardCaioLeria.app; path = "/Users/taqtile/onboard-caio-leria-fe/OnboardCaioLeria/build/Debug/OnboardCaioLeria.app"; sourceTree = "<absolute>"; };
-		4DB80E5B2F0ECCD1009F6120 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4DB80E5C2F0ECCD1009F6120 /* content-view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "content-view.swift"; sourceTree = "<group>"; };
-		4DB80E5D2F0ECCD1009F6120 /* hello-world.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "hello-world.swift"; sourceTree = "<group>"; };
 		4DB80E612F0ED0A0009F6120 /* .swiftlint.auto.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.auto.yml; sourceTree = "<group>"; };
 		4DB80E632F0ED10F009F6120 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4DB80E652F0ED997009F6120 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -31,12 +32,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D13A5FB2F16DB7E008A566A /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D13A5F92F16DB7E008A566A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4D9C031F2F0D785D0042C77C = {
 			isa = PBXGroup;
 			children = (
@@ -44,10 +53,8 @@
 				4D1F9F492F106302009E898B /* .swiftFormat */,
 				4DB80E612F0ED0A0009F6120 /* .swiftlint.auto.yml */,
 				4DB80E632F0ED10F009F6120 /* .swiftlint.yml */,
-				4DB80E5C2F0ECCD1009F6120 /* content-view.swift */,
-				4DB80E5D2F0ECCD1009F6120 /* hello-world.swift */,
-				4DB80E5B2F0ECCD1009F6120 /* Assets.xcassets */,
 				4D9C032A2F0D785D0042C77C /* onboard-caio-leria */,
+				4D13A5F92F16DB7E008A566A /* Frameworks */,
 				4D9C03292F0D785D0042C77C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,6 +90,7 @@
 			);
 			name = OnboardCaioLeria;
 			packageProductDependencies = (
+				4D13A5FA2F16DB7E008A566A /* Moya */,
 			);
 			productName = OnboardCaioLeria;
 			productReference = 4D1F9F412F1061B8009E898B /* OnboardCaioLeria.app */;
@@ -112,6 +120,9 @@
 			);
 			mainGroup = 4D9C031F2F0D785D0042C77C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4D13A5E42F16B286008A566A /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4D9C03292F0D785D0042C77C /* Products */;
 			projectDirPath = "";
@@ -404,6 +415,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4D13A5E42F16B286008A566A /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4D13A5FA2F16DB7E008A566A /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D13A5E42F16B286008A566A /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4D9C03202F0D785D0042C77C /* Project object */;
 }

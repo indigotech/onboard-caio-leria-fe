@@ -1,9 +1,8 @@
 import SwiftUI
 
 struct LoginView: View {
-    @StateObject private var viewModel: LoginViewModel = LoginViewModel()
+    @StateObject private var viewModel: LoginViewModel = .init()
     var body: some View {
-        
         Text("Bem vindo(a) à Taqtile!")
             .font(.largeTitle).fontWeight(.bold)
         
@@ -28,11 +27,9 @@ struct LoginView: View {
             SecureField(
                 "Password",
                 text: $viewModel.password
-                
             )
             .border(Color.gray)
-            
-        }
+         }
         .padding(.horizontal)
         .padding(.bottom, 2)
         
@@ -50,6 +47,6 @@ struct LoginView: View {
         }
         if !viewModel.textError.isEmpty {
             Text(viewModel.textError)
-        }        
+        }
     }
 }

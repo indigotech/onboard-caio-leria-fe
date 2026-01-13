@@ -1,12 +1,14 @@
-import SwiftUI
-import Foundation
 import Combine
+import Foundation
+import Moya
+import SwiftUI
 
 class LoginViewModel: ObservableObject {
     @Published var email: String = ""
-    @Published var password: String  = ""
+    @Published var password: String = ""
     @Published var validationErrorText: String = ""
     @Published var textError: String = ""
+    let provider = MoyaProvider<LoginService>()
     
     var isPasswordValid: Bool {
         let passwordSize = password.count >= 7
@@ -22,49 +24,46 @@ class LoginViewModel: ObservableObject {
     }
     
     func validatingCredentials() {
-            if !isEmailValid && !isPasswordValid {
-                validationErrorText = "Credenciais inválidas"
-            } else if !isPasswordValid {
-                validationErrorText = "Senha inválida"
-            } else if !isEmailValid {
-                validationErrorText = "Digite um email válido"
-            } else {
-            Task {await logingIn()}
-            }
+        if !isEmailValid, !isPasswordValid {
+            validationErrorText = "Credenciais inválidas"
+        } else if !isPasswordValid {
+            validationErrorText = "Senha inválida"
+        } else if !isEmailValid {
+            validationErrorText = "Digite um email válido"
+        } else {
+            performLogin()
+        }
     }
     
-    func logingIn() async {
-        let login =  Login()
-        login.email = email
-        login.password = password
+    func performLogin() {
+        var loginData = Login()
+        loginData.email = email
+        loginData.password = password
         
-        guard let encoder = try? JSONEncoder().encode(login) else {
-            textError = "Erro ao tentar logar"
-            return
-        }
-        let url = URL(string: "https://template-onboarding-node-sjz6wnaoia-uc.a.run.app/authenticate")!
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = encoder
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        do {
-            let (data, response) = try await URLSession.shared.data(for: urlRequest)
-            let httpResponse = response as? HTTPURLResponse
-            if httpResponse?.statusCode == 200 {
-                let decoded = try JSONDecoder().decode(Login.LoginResponse.self, from: data)
-                login.token = decoded.data.token
-                UserDefaults.standard.set(login.token, forKey: "token")
-            } else {
-                let decodedError = try JSONDecoder().decode(Login.LoginError.self, from: data)
-                await MainActor.run{
-                    let error = decodedError.errors?.first?.message
-                    textError = "erro:\(error)"
+        provider.request(.login(loginData)) { result in
+            switch result {
+            case .success(let response):
+                if response.statusCode == 200 {
+                    if let user = try? JSONDecoder().decode(LoginResponse.self, from: response.data) {
+                        DispatchQueue.main.async {
+                            self.textError = ""
+                            UserDefaults.standard.set(user.data.token, forKey: "token")
+                        }
+                    }
+                } else {
+                    let decoder = JSONDecoder()
+                    if let error = try? decoder.decode(LoginError.self, from: response.data) {
+                        let errorMessage = error.errors?.first?.message ?? "erro desconhecido"
+                        DispatchQueue.main.async {
+                            self.textError = errorMessage
+                        }
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.textError = error.localizedDescription
                 }
             }
-        } catch {
-            print(textError)
         }
     }
 }
