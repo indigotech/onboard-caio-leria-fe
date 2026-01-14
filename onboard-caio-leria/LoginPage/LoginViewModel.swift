@@ -8,6 +8,8 @@ class LoginViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var validationErrorText: String = ""
     @Published var textError: String = ""
+    @Published var isLoading: Bool = false
+    
     let provider = MoyaProvider<LoginService>()
     
     var isPasswordValid: Bool {
@@ -16,7 +18,7 @@ class LoginViewModel: ObservableObject {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
         return passwordSize && passwordTest.evaluate(with: password) && !password.isEmpty
     }
- 
+    
     var isEmailValid: Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
@@ -39,7 +41,7 @@ class LoginViewModel: ObservableObject {
         var loginData = Login()
         loginData.email = email
         loginData.password = password
-        
+        isLoading=true
         provider.request(.login(loginData)) { result in
             switch result {
             case .success(let response):
@@ -48,6 +50,7 @@ class LoginViewModel: ObservableObject {
                         DispatchQueue.main.async {
                             self.textError = ""
                             UserDefaults.standard.set(user.data.token, forKey: "token")
+                            self.isLoading = false
                         }
                     }
                 } else {
@@ -56,6 +59,7 @@ class LoginViewModel: ObservableObject {
                         let errorMessage = error.errors?.first?.message ?? "erro desconhecido"
                         DispatchQueue.main.async {
                             self.textError = errorMessage
+                            self.isLoading = false
                         }
                     }
                 }
