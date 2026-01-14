@@ -11,26 +11,26 @@ enum LoginService {
 extension LoginService: TargetType {
     var baseURL: URL {
         return URL(string: SERVER_BASE_URL)!
+    }
+    
+    var path: String {
+        switch self {
+        case .login: return "/authenticate"
         }
-        
-        var path: String {
-            switch self {
-            case .login: return "/authenticate"
-            }
+    }
+    
+    var method: Moya.Method {
+        return .post
+    }
+    
+    var task: Task {
+        switch self {
+        case .login(let loginData):
+            return .requestJSONEncodable(loginData)
         }
-        
-        var method: Moya.Method {
-            return .post
-        }
-        
-        var task: Task {
-            switch self {
-            case .login(let loginData):
-                return .requestJSONEncodable(loginData)
-            }
-        }
-        
-        var headers: [String: String]? {
-            return ["Content-Type": "application/json"]
-        }
+    }
+    
+    var headers: [String: String]? {
+        return ["Content-Type": "application/json"]
+    }
 }
