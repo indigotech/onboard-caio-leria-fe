@@ -9,7 +9,7 @@ class LoginViewModel: ObservableObject {
     @Published var validationErrorText: String = ""
     @Published var textError: String = ""
     @Published var isLoading: Bool = false
-    
+    @Published var isLoggedIn: Bool = false
     let provider = MoyaProvider<LoginService>()
     
     var isPasswordValid: Bool {
@@ -51,6 +51,7 @@ class LoginViewModel: ObservableObject {
                             self.textError = ""
                             UserDefaults.standard.set(user.data.token, forKey: "token")
                             self.isLoading = false
+                            self.isLoggedIn = true
                         }
                     }
                 } else {
