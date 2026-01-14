@@ -22,11 +22,11 @@ struct LoginView: View {
         .padding(.bottom, 2)
         
         VStack {
-            Text("Password")
+            Text("Senha")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .font(.title2)
             SecureField(
-                "Password",
+                "Senha",
                 text: $viewModel.password
             )
             .border(Color.gray)
@@ -36,7 +36,7 @@ struct LoginView: View {
         
         VStack {
             if viewModel.isLoading {
-                ProgressView("Loading content...")
+                ProgressView("Carregando")
                     .progressViewStyle(CircularProgressViewStyle())
             } else {
                 Button("Login") {
