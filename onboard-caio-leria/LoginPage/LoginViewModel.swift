@@ -10,7 +10,7 @@ class LoginViewModel: ObservableObject {
     @Published var textError: String = ""
     @Published var isLoading: Bool = false
     @Published var isLoggedIn: Bool = false
-    
+
     let provider = MoyaProvider<LoginService>()
     
     var isPasswordValid: Bool {
