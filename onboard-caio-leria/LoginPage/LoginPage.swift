@@ -35,13 +35,19 @@ struct LoginView: View {
         .padding(.bottom, 2)
         
         VStack {
-            Button("Login") {
-                viewModel.validatingCredentials()
+            if viewModel.isLoading {
+                ProgressView("Loading content...")
+                    .progressViewStyle(CircularProgressViewStyle())
+            } else {
+                Button("Login") {
+                    viewModel.validatingCredentials()
+                }
+                .frame(maxWidth: .infinity)
+                .foregroundStyle(Color.white)
+                .background(Color.blue)
+                .padding(.horizontal)
             }
-            .frame(maxWidth: .infinity)
-            .foregroundStyle(Color.white)
-            .background(Color.blue)
-            .padding(.horizontal)
+            
         }
         
         if !viewModel.validationErrorText.isEmpty {
