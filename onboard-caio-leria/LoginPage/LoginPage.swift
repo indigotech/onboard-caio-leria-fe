@@ -2,6 +2,7 @@ import SwiftUI
 
 struct LoginView: View {
     @StateObject private var viewModel: LoginViewModel = .init()
+    @StateObject private var usersViewModel: UsersViewModel = .init()
     var body: some View {
         NavigationStack {
             Text("Bem vindo(a) à Taqtile!")
@@ -37,9 +38,11 @@ struct LoginView: View {
                 if viewModel.isLoading {
                     ProgressView("Carregando")
                         .progressViewStyle(CircularProgressViewStyle())
+                   
                 } else {
                     Button("Login") {
                         viewModel.validatingCredentials()
+                        
                     }
                     .frame(maxWidth: .infinity)
                     .foregroundStyle(Color.white)

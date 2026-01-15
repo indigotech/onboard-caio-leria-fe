@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D13A5FB2F16DB7E008A566A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 4D13A5FA2F16DB7E008A566A /* Moya */; };
+		4DAECE7E2F195E59008671E1 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 4DAECE7D2F195E59008671E1 /* RxMoya */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DAECE7E2F195E59008671E1 /* RxMoya in Frameworks */,
 				4D13A5FB2F16DB7E008A566A /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,6 +93,7 @@
 			name = OnboardCaioLeria;
 			packageProductDependencies = (
 				4D13A5FA2F16DB7E008A566A /* Moya */,
+				4DAECE7D2F195E59008671E1 /* RxMoya */,
 			);
 			productName = OnboardCaioLeria;
 			productReference = 4D1F9F412F1061B8009E898B /* OnboardCaioLeria.app */;
@@ -432,6 +435,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4D13A5E42F16B286008A566A /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		4DAECE7D2F195E59008671E1 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D13A5E42F16B286008A566A /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -2,16 +2,10 @@ import Foundation
 import SwiftUI
 
 struct UsersView: View {
-    private let user: [User] = [
-        User(name: "name", email: "email"),
-        User(name: "name", email: "email"),
-        User(name: "name", email: "email"),
-        User(name: "name", email: "email")
-    ]
-    
+    @StateObject var viewModel = UsersViewModel()
     var body: some View {
         NavigationView {
-            List(user, id: \.email) { user in
+            List(viewModel.users, id: \.email) { user in
                 VStack(alignment: .leading) {
                     Text(user.name)
                         .font(.title2)
@@ -21,7 +15,8 @@ struct UsersView: View {
             }
         }
         .navigationBarTitle("Usuários")
+        .onAppear {
+            viewModel.fetchUsers()
+        }
     }
 }
-
-
