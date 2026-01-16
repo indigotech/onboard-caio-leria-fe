@@ -12,6 +12,11 @@ struct UsersView: View {
                     Text(user.email)
                         .font(.caption)
                 }
+                .onAppear {
+                    if user.id == self.viewModel.users.last?.id {
+                        viewModel.fetchUsers()
+                    }
+                }
             }
         }
         .navigationBarTitle("Usuários")
