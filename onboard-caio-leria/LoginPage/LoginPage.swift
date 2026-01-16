@@ -1,9 +1,8 @@
 import SwiftUI
 
 struct LoginView: View {
-    @StateObject private var viewModel: LoginViewModel = LoginViewModel()
+    @StateObject private var viewModel: LoginViewModel = .init()
     var body: some View {
-        
         Text("Bem vindo(a) à Taqtile!")
             .font(.largeTitle).fontWeight(.bold)
         
@@ -14,9 +13,9 @@ struct LoginView: View {
             TextField(
                 "seuemail@email.com",
                 text: $viewModel.email
-                )
-           .border(Color.gray)
-           .foregroundStyle(.black)
+            )
+            .border(Color.gray)
+            .foregroundStyle(.black)
         }
         .padding(.horizontal)
         .padding(.bottom, 2)
@@ -28,17 +27,15 @@ struct LoginView: View {
             SecureField(
                 "Password",
                 text: $viewModel.password
-        
             )
             .border(Color.gray)
-           
-        }
+         }
         .padding(.horizontal)
         .padding(.bottom, 2)
         
         VStack {
             Button("Login") {
-               viewModel.login()
+                viewModel.validatingCredentials()
             }
             .frame(maxWidth: .infinity)
             .foregroundStyle(Color.white)
@@ -47,6 +44,9 @@ struct LoginView: View {
         }
         if !viewModel.validationErrorText.isEmpty {
             Text(viewModel.validationErrorText)
+        }
+        if !viewModel.textError.isEmpty {
+            Text(viewModel.textError)
         }
     }
 }
