@@ -12,20 +12,20 @@ class LoginViewModel: ObservableObject {
     @Published var isLoggedIn: Bool = false
 
     let provider = MoyaProvider<LoginService>()
-    
+
     var isPasswordValid: Bool {
         let passwordSize = password.count >= 7
         let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d).+$"
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
         return passwordSize && passwordTest.evaluate(with: password) && !password.isEmpty
     }
-    
+
     var isEmailValid: Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailTest.evaluate(with: email) && !email.isEmpty
     }
-    
+
     func validatingCredentials() {
         if !isEmailValid && !isPasswordValid {
             validationErrorText = "Credenciais inválidas"
@@ -38,7 +38,7 @@ class LoginViewModel: ObservableObject {
             performLogin()
         }
     }
-    
+
     func performLogin() {
         var loginData = Login()
         loginData.email = email

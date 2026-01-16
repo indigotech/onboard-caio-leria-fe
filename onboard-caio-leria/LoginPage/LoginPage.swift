@@ -58,6 +58,7 @@ struct LoginView: View {
                     Text(viewModel.validationErrorText)
                         .foregroundColor(.red)
                 }
+                
                 if !viewModel.textError.isEmpty {
                     Text(viewModel.textError)
                         .foregroundColor(.red)

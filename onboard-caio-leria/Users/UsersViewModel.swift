@@ -1,9 +1,9 @@
 import Foundation
 import Moya
-import SwiftUI
 import RxSwift
 import RxMoya
 import Combine
+
 class UsersViewModel: ObservableObject{
     let disposeBag = DisposeBag()
     let provider = MoyaProvider<LoginService>()
@@ -19,7 +19,7 @@ class UsersViewModel: ObservableObject{
             }, onFailure: { error in
                 print(error)
             })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
-
+    
 }
