@@ -5,7 +5,7 @@ import RxSwift
 import RxMoya
 import Combine
 
-class UsersViewModel: ObservableObject{
+class UsersViewModel: ObservableObject {
     
     let disposeBag = DisposeBag()
     let provider = MoyaProvider<LoginService>()
@@ -48,6 +48,10 @@ class UsersViewModel: ObservableObject{
     
     func fetchUsers() {
         loadNextPage.onNext(())
+    }
+    
+    func logout() {
+        
     }
     
 }

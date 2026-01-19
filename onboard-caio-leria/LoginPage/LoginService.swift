@@ -7,6 +7,7 @@ let SERVER_BASE_URL: String = "https://template-onboarding-node-sjz6wnaoia-uc.a.
 enum LoginService {
     case login(Login)
     case fetchUser (offset: Int, limit: Int)
+    case signUp(User)
 }
 
 extension LoginService: TargetType {
@@ -18,6 +19,7 @@ extension LoginService: TargetType {
         switch self {
         case .login: return "/authenticate"
         case .fetchUser: return "/users"
+        case .signUp: return "/users"
         }
     }
     
@@ -27,6 +29,8 @@ extension LoginService: TargetType {
             return .post
         case .fetchUser:
             return .get
+        case .signUp:
+            return .post
         }
     }
     
@@ -37,6 +41,8 @@ extension LoginService: TargetType {
         case .fetchUser(let offset, let limit):
             return .requestParameters(parameters: ["offset": offset, "limit": limit],
             encoding: URLEncoding.queryString )
+        case .signUp(let userData):
+            return .requestJSONEncodable(userData)
         }
     }
     
@@ -49,7 +55,10 @@ extension LoginService: TargetType {
                 .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             return [
                 "Content-Type": "application/json",
-                "Authorization": token]
+                "Authorization": token
+            ]
+        case .signUp:
+            return ["Content-Type": "application/json"]
         }
     }
 }

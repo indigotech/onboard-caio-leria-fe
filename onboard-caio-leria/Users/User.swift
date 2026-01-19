@@ -1,12 +1,18 @@
 import Foundation
 
 struct User: Codable, Identifiable {
-    var id: String
+    var id: String?
     var name: String
     var email: String
-    var birthDate: String
+    var password: String
+    var birthDate: Date 
     var phone: String
-    var role: String
+    var role: Roles
+    
+    enum Roles: String, Codable, CaseIterable {
+        case user = "User"
+        case admin = "Admin"
+    }
 }
 
 struct UserResponse: Codable {
