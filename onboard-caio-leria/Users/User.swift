@@ -17,16 +17,26 @@ struct User: Codable, Identifiable {
 
 struct UserResponse: Codable {
     let data: DataContainer
-
+    
     struct DataContainer: Codable {
         let nodes: [User]
         let pageInfo: PageInfo
     }
-
+    
     struct PageInfo: Codable {
         let limit: Int
         let offset: Int
         let hasNextPage: Bool
         let hasPreviousPage: Bool
+    }
+}
+
+struct SignUpError: Codable {
+    let errors: [ErrorResponse]?
+    
+    struct ErrorResponse: Codable {
+        let name: String
+        let code: Int
+        let message: String
     }
 }

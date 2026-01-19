@@ -3,6 +3,7 @@ import SwiftUI
 
 struct UsersView: View {
     @StateObject var viewModel = UsersViewModel()
+    @State private var path = NavigationPath()
     var body: some View {
         ZStack {
             NavigationView {
@@ -24,24 +25,30 @@ struct UsersView: View {
             .onAppear {
                 viewModel.fetchUsers()
             }
-            VStack {
-                Spacer()
-                HStack {
+            NavigationStack(path: $path){
+                VStack {
                     Spacer()
-                    Button("+") {
+                    HStack {
+                        Spacer()
+                        Button("+") {
+                            path.append("SignUpView")
+                        }
+                        .font(.title)
+                        .frame(width: 60, height: 60)
+                        .clipShape(Circle())
+                        .padding()
+                        .navigationDestination(for: String.self) { value in
+                            if value == "SignUpView" {
+                                SignUpView()
+                            }
+                        }
+                        .padding()
                     }
-                    .font(.title)
-                    .frame(width: 60, height: 60)
-                    .clipShape(Circle())
-                    .padding()
                 }
-                .padding()
             }
         }
     }
 }
-
 #Preview {
     UsersView()
 }
-

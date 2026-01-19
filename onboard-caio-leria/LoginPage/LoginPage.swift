@@ -38,19 +38,17 @@ struct LoginView: View {
                 if viewModel.isLoading {
                     ProgressView("Carregando")
                         .progressViewStyle(CircularProgressViewStyle())
-                   
                 } else {
                     Button("Login") {
                         viewModel.validatingCredentials()
-                        
                     }
                     .frame(maxWidth: .infinity)
                     .foregroundStyle(Color.white)
                     .background(Color.blue)
                     .padding(.horizontal)
                 }
-                
-            }.navigationDestination(isPresented: $viewModel.isLoggedIn) {
+            }
+            .navigationDestination(isPresented: $viewModel.isLoggedIn) {
                 UsersView()}
             
             if !viewModel.validationErrorText.isEmpty {

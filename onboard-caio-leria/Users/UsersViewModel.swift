@@ -25,7 +25,7 @@ class UsersViewModel: ObservableObject {
             .do(onNext: { [weak self] in
                 self?.isfetching = true
             })
-            .flatMap{ [weak self] _ -> Observable<UserResponse> in
+            .flatMap {[weak self] _ -> Observable<UserResponse> in
                 guard let self = self else {return .empty()}
                 return self.provider.rx.request(LoginService.fetchUser(offset: self.offset, limit: self.limit ))
                     .filterSuccessfulStatusCodes()
@@ -43,7 +43,8 @@ class UsersViewModel: ObservableObject {
                 self.isfetching = false
                 self.hasNextPage = response.data.pageInfo.hasNextPage
                 
-            }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
     }
     
     func fetchUsers() {
@@ -51,8 +52,5 @@ class UsersViewModel: ObservableObject {
     }
     
     func logout() {
-        
     }
-    
 }
-

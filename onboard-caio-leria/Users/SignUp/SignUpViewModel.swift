@@ -1,16 +1,16 @@
-//
-//  SignUpViewModel.swift
-//  OnboardCaioLeria
-//
-//  Created by Taqtile on 16/01/26.
-//
 import Combine
 import Foundation
 import Moya
 import SwiftUI
+import RxMoya
+import RxSwift
 
 class SignUpViewModel: ObservableObject {
     @Published var user: User = .init(name: "", email: "",  password: "", birthDate: Date(), phone: "", role: .user)
+    @Published var textError: String = ""
+    let provider = MoyaProvider<LoginService>()
+    let disposeBag = DisposeBag()
+    @Published var isSignUp: Bool = false
     
     var isPasswordValid: Bool {
         let passwordSize = user.password.count >= 7
@@ -31,9 +31,7 @@ class SignUpViewModel: ObservableObject {
     }
     
     var isBirthDateValid: Bool {
-        let birthDateRegex = "^[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}$"
-        let birthDateTest = NSPredicate(format: "SELF MATCHES %@", birthDateRegex)
-        return birthDateTest.evaluate(with: user.birthDate) && user.birthDate <= Date()
+        return user.birthDate <= Date()
     }
     
     var isNameValid: Bool {
@@ -43,4 +41,27 @@ class SignUpViewModel: ObservableObject {
         }
         return !user.name.isEmpty && isNameFull
     }
+    
+    var isSignUpValid: Bool {
+        return isEmailValid && isPasswordValid && isNameValid && isPhoneValid && isBirthDateValid
+    }
+    
+    func SignUp () {
+        self.textError = ""
+        self.isSignUp = false
+        provider.rx.request(LoginService.signUp(user))
+            .filterSuccessfulStatusCodes()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onSuccess: { [weak self] _ in
+                self?.isSignUp = true
+            }, onFailure: {[weak self] error in
+                if let moyaError = error as? MoyaError, let reponse = moyaError.response {
+                    let errorResponse = try? reponse.map(SignUpError.self)
+                    self?.textError = errorResponse?.errors?.first?.message ?? "Something went wrong"
+                }
+            }).disposed(by: disposeBag)
+    }
+    
 }
+
+
