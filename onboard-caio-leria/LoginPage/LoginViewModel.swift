@@ -41,7 +41,7 @@ class LoginViewModel: ObservableObject {
         var loginData = Login()
         loginData.email = email
         loginData.password = password
-        isLoading=true
+        isLoading = true
         provider.request(.login(loginData)) { result in
             switch result {
             case .success(let response):

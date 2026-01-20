@@ -1,16 +1,17 @@
-//
-//  SignUpViewModel.swift
-//  OnboardCaioLeria
-//
-//  Created by Taqtile on 16/01/26.
-//
 import Combine
 import Foundation
 import Moya
+import RxMoya
+import RxSwift
 import SwiftUI
 
 class SignUpViewModel: ObservableObject {
-    @Published var user: User = .init(name: "", email: "",  password: "", birthDate: Date(), phone: "", role: .user)
+    @Published var user: SignUpUser = .init(email: "", name: "", password: "", birthDate: Date(), phone: "", role: .user)
+    @Published var textError: String = ""
+    @Published var isSignupSuccessful: Bool = false
+    let provider = MoyaProvider<LoginService>(
+    )
+    let disposeBag = DisposeBag()
     
     var isPasswordValid: Bool {
         let passwordSize = user.password.count >= 7
@@ -24,6 +25,7 @@ class SignUpViewModel: ObservableObject {
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailTest.evaluate(with: user.email) && !user.email.isEmpty
     }
+
     var isPhoneValid: Bool {
         let phoneRegex = "^[0-9]{10,11}$"
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
@@ -31,9 +33,7 @@ class SignUpViewModel: ObservableObject {
     }
     
     var isBirthDateValid: Bool {
-        let birthDateRegex = "^[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}$"
-        let birthDateTest = NSPredicate(format: "SELF MATCHES %@", birthDateRegex)
-        return birthDateTest.evaluate(with: user.birthDate) && user.birthDate <= Date()
+        return user.birthDate <= Date()
     }
     
     var isNameValid: Bool {
@@ -42,5 +42,25 @@ class SignUpViewModel: ObservableObject {
             return nameParts.count >= 2
         }
         return !user.name.isEmpty && isNameFull
+    }
+    
+    var isSignUpValid: Bool {
+        return isEmailValid && isPasswordValid && isNameValid && isPhoneValid && isBirthDateValid
+    }
+    
+    func SignUp() {
+        textError = ""
+        isSignupSuccessful = false
+        provider.rx.request(LoginService.signUp(user))
+            .filterSuccessfulStatusCodes()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onSuccess: { [weak self] _ in
+                self?.isSignupSuccessful = true
+            }, onFailure: { [weak self] error in
+                if let moyaError = error as? MoyaError, let reponse = moyaError.response {
+                    let errorResponse = try? reponse.map(SignUpError.self)
+                    self?.textError = errorResponse?.errors?.first?.message ?? "Algo deu errado"
+                }
+            }).disposed(by: disposeBag)
     }
 }
