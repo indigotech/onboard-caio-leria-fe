@@ -22,7 +22,7 @@ struct SignUpView: View {
                         "E-mail",
                         text: $signUpViewModel.user.email
                     )
-                    if (!signUpViewModel.isEmailValid  && signUpViewModel.user.email != "" ){
+                    if !signUpViewModel.isEmailValid  && signUpViewModel.user.email != "" {
                         Text("Digite um email válido")
                             .font(Font.caption.italic())
                             .foregroundColor(.red)
@@ -31,7 +31,7 @@ struct SignUpView: View {
                         "Senha",
                         text: $signUpViewModel.user.password
                     )
-                    if (!signUpViewModel.isPasswordValid  && signUpViewModel.user.password != "" ){
+                    if !signUpViewModel.isPasswordValid  && signUpViewModel.user.password != "" {
                         Text("A senha deve conter pelo menos 7 caracteres e pelo menos 1 número")
                             .font(Font.caption.italic())
                             .foregroundColor(.red)
@@ -40,7 +40,7 @@ struct SignUpView: View {
                         "Telefone",
                         text: $signUpViewModel.user.phone
                     )
-                    if (!signUpViewModel.isPhoneValid  && signUpViewModel.user.phone != "" ){
+                    if !signUpViewModel.isPhoneValid  && signUpViewModel.user.phone != "" {
                         Text("Digite um número válido")
                             .font(Font.caption.italic())
                             .foregroundColor(.red)
@@ -50,7 +50,7 @@ struct SignUpView: View {
                         selection: $signUpViewModel.user.birthDate,
                         displayedComponents: .date
                     )
-                    if (!signUpViewModel.isBirthDateValid){
+                    if !signUpViewModel.isBirthDateValid {
                         Text("Coloque uma data válida")
                             .font(Font.caption.italic())
                             .foregroundColor(.red)
@@ -68,7 +68,7 @@ struct SignUpView: View {
                     .disabled(!signUpViewModel.isSignUpValid)
                     .onChange(of: signUpViewModel.isSignUp) { oldValue, newValue in
                         if newValue {
-                            path.append("UsersPage")
+                            path.append("UsersView")
                         }
                     }
                     if !signUpViewModel.textError.isEmpty {

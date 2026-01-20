@@ -26,8 +26,8 @@ struct UserResponse: Codable {
 
 struct SignUpUser: Codable, Identifiable {
     var id: String?
-    var name: String
     var email: String
+    var name: String
     var password: String
     var birthDate: Date
     var phone: String

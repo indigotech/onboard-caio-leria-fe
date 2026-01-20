@@ -42,7 +42,14 @@ extension LoginService: TargetType {
             return .requestParameters(parameters: ["offset": offset, "limit": limit],
                                       encoding: URLEncoding.queryString )
         case .signUp(let userData):
-            return .requestJSONEncodable(userData)
+            let dateFormatter: DateFormatter = {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                return formatter
+            }()
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .formatted(dateFormatter)
+            return .requestCustomJSONEncodable(userData, encoder: encoder)
         }
     }
     
@@ -58,7 +65,11 @@ extension LoginService: TargetType {
                 "Authorization": token
             ]
         case .signUp:
-            return ["Content-Type": "application/json"]
+            let token = UserDefaults.standard.string(forKey: "token")?
+                .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            return ["Content-Type": "application/json",
+                    "Authorization": token
+            ]
         }
     }
 }
