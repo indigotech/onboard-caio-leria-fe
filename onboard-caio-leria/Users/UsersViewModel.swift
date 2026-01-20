@@ -31,9 +31,10 @@ class UsersViewModel: ObservableObject {
                     .filterSuccessfulStatusCodes()
                     .map(UserResponse.self)
                     .asObservable()
-                    .catch { _ in
-                            .empty()
-                    }
+                    .do(onError: { error in
+                                print("❌ Network Error: \(error)") // Add this to debug!
+                                self.isfetching = false
+                            })
             }
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] response in
@@ -42,15 +43,10 @@ class UsersViewModel: ObservableObject {
                 self.offset += self.limit
                 self.isfetching = false
                 self.hasNextPage = response.data.pageInfo.hasNextPage
-                
             })
             .disposed(by: disposeBag)
     }
-    
     func fetchUsers() {
         loadNextPage.onNext(())
-    }
-    
-    func logout() {
     }
 }

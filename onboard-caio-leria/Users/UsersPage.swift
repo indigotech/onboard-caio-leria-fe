@@ -3,11 +3,11 @@ import SwiftUI
 
 struct UsersView: View {
     @StateObject var viewModel = UsersViewModel()
-    @State private var path = NavigationPath()
+    @Binding var path: NavigationPath
     var body: some View {
-        ZStack {
-            NavigationView {
-                List(viewModel.users, id: \.email) { user in
+        
+            ZStack {
+                List(viewModel.users, id: \.id) { user in
                     VStack(alignment: .leading) {
                         Text(user.name)
                             .font(.title2)
@@ -20,12 +20,8 @@ struct UsersView: View {
                         }
                     }
                 }
-            }
-            .navigationBarTitle("Usuários")
-            .onAppear {
-                viewModel.fetchUsers()
-            }
-            NavigationStack(path: $path){
+                .navigationTitle("Usuários")
+                
                 VStack {
                     Spacer()
                     HStack {
@@ -37,18 +33,11 @@ struct UsersView: View {
                         .frame(width: 60, height: 60)
                         .clipShape(Circle())
                         .padding()
-                        .navigationDestination(for: String.self) { value in
-                            if value == "SignUpView" {
-                                SignUpView()
-                            }
-                        }
-                        .padding()
                     }
                 }
             }
+            .onAppear {viewModel.fetchUsers()}
+            
         }
-    }
 }
-#Preview {
-    UsersView()
-}
+

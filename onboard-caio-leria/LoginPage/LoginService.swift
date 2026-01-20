@@ -7,7 +7,7 @@ let SERVER_BASE_URL: String = "https://template-onboarding-node-sjz6wnaoia-uc.a.
 enum LoginService {
     case login(Login)
     case fetchUser (offset: Int, limit: Int)
-    case signUp(User)
+    case signUp(SignUpUser)
 }
 
 extension LoginService: TargetType {
@@ -40,7 +40,7 @@ extension LoginService: TargetType {
             return .requestJSONEncodable(loginData)
         case .fetchUser(let offset, let limit):
             return .requestParameters(parameters: ["offset": offset, "limit": limit],
-            encoding: URLEncoding.queryString )
+                                      encoding: URLEncoding.queryString )
         case .signUp(let userData):
             return .requestJSONEncodable(userData)
         }

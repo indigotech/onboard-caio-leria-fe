@@ -2,10 +2,10 @@ import SwiftUI
 
 struct SignUpView: View {
     @StateObject var signUpViewModel: SignUpViewModel = .init()
-    @State private var path = NavigationPath()
+    @Binding var path: NavigationPath
     
     var body: some View {
-        NavigationStack(path: $path) {
+        
             VStack {
                 Form {
                     TextField(
@@ -27,7 +27,6 @@ struct SignUpView: View {
                             .font(Font.caption.italic())
                             .foregroundColor(.red)
                     }
-                    
                     TextField(
                         "Senha",
                         text: $signUpViewModel.user.password
@@ -57,37 +56,27 @@ struct SignUpView: View {
                             .foregroundColor(.red)
                     }
                     Picker("Cargo", selection: $signUpViewModel.user.role) {
-                        ForEach(User.Roles.allCases, id: \.self) { role in
+                        ForEach(SignUpUser.Roles.allCases, id: \.self) { role in
                             Text(role.rawValue).tag(role)
                         }
                     }
                     .pickerStyle(.segmented)
-                    Button("Cadastre"){
+                    Button("Cadastre") {
                         signUpViewModel.SignUp()
                     }
                     .frame(maxWidth: .infinity)
                     .disabled(!signUpViewModel.isSignUpValid)
                     .onChange(of: signUpViewModel.isSignUp) { oldValue, newValue in
-                        if newValue{
+                        if newValue {
                             path.append("UsersPage")
                         }
                     }
                     if !signUpViewModel.textError.isEmpty {
                         Text(signUpViewModel.textError)
                     }
-                }
-                .navigationDestination(for: String.self) { value in
-                    if value == "UsersPage" {
-                        UsersView()
-                    }
-                }
                 
+                }
             }
             .navigationTitle(Text("Sign Up"))
         }
-    }
-}
-
-#Preview {
-    SignUpView()
 }

@@ -6,7 +6,7 @@ import RxMoya
 import RxSwift
 
 class SignUpViewModel: ObservableObject {
-    @Published var user: User = .init(name: "", email: "",  password: "", birthDate: Date(), phone: "", role: .user)
+    @Published var user: SignUpUser = .init(name: "", email: "",  password: "", birthDate: Date(), phone: "", role: .user)
     @Published var textError: String = ""
     let provider = MoyaProvider<LoginService>()
     let disposeBag = DisposeBag()
@@ -46,7 +46,7 @@ class SignUpViewModel: ObservableObject {
         return isEmailValid && isPasswordValid && isNameValid && isPhoneValid && isBirthDateValid
     }
     
-    func SignUp () {
+    func SignUp() {
         self.textError = ""
         self.isSignUp = false
         provider.rx.request(LoginService.signUp(user))
