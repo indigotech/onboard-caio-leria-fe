@@ -8,7 +8,7 @@ import SwiftUI
 class SignUpViewModel: ObservableObject {
     @Published var user: SignUpUser = .init(email: "", name: "", password: "", birthDate: Date(), phone: "", role: .user)
     @Published var textError: String = ""
-    @Published var isSignUp: Bool = false
+    @Published var isSignupSuccessful: Bool = false
     let provider = MoyaProvider<LoginService>(
     )
     let disposeBag = DisposeBag()
@@ -50,12 +50,12 @@ class SignUpViewModel: ObservableObject {
     
     func SignUp() {
         textError = ""
-        isSignUp = false
+        isSignupSuccessful = false
         provider.rx.request(LoginService.signUp(user))
             .filterSuccessfulStatusCodes()
             .observe(on: MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] _ in
-                self?.isSignUp = true
+                self?.isSignupSuccessful = true
             }, onFailure: { [weak self] error in
                 if let moyaError = error as? MoyaError, let reponse = moyaError.response {
                     let errorResponse = try? reponse.map(SignUpError.self)

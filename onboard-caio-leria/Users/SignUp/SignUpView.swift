@@ -65,7 +65,7 @@ struct SignUpView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .disabled(!signUpViewModel.isSignUpValid)
-                .onChange(of: signUpViewModel.isSignUp) { _, newValue in
+                .onChange(of: signUpViewModel.isSignupSuccessful) { _, newValue in
                     if newValue {
                         path.append("UsersView")
                     }
