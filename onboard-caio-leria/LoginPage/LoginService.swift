@@ -1,12 +1,12 @@
+import Alamofire
 import Foundation
 import Moya
-import Alamofire
 
 let SERVER_BASE_URL: String = "https://template-onboarding-node-sjz6wnaoia-uc.a.run.app"
 
 enum LoginService {
     case login(Login)
-    case fetchUser (offset: Int, limit: Int)
+    case fetchUser(offset: Int, limit: Int)
     case signUp(SignUpUser)
 }
 
@@ -14,7 +14,7 @@ extension LoginService: TargetType {
     var baseURL: URL {
         return URL(string: SERVER_BASE_URL)!
     }
-    
+
     var path: String {
         switch self {
         case .login: return "/authenticate"
@@ -22,7 +22,7 @@ extension LoginService: TargetType {
         case .signUp: return "/users"
         }
     }
-    
+
     var method: Moya.Method {
         switch self {
         case .login:
@@ -33,14 +33,14 @@ extension LoginService: TargetType {
             return .post
         }
     }
-    
+
     var task: Task {
         switch self {
         case .login(let loginData):
             return .requestJSONEncodable(loginData)
         case .fetchUser(let offset, let limit):
             return .requestParameters(parameters: ["offset": offset, "limit": limit],
-                                      encoding: URLEncoding.queryString )
+                                      encoding: URLEncoding.queryString)
         case .signUp(let userData):
             let dateFormatter: DateFormatter = {
                 let formatter = DateFormatter()
@@ -52,7 +52,7 @@ extension LoginService: TargetType {
             return .requestCustomJSONEncodable(userData, encoder: encoder)
         }
     }
-    
+
     var headers: [String: String]? {
         switch self {
         case .login:
@@ -68,8 +68,7 @@ extension LoginService: TargetType {
             let token = UserDefaults.standard.string(forKey: "token")?
                 .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             return ["Content-Type": "application/json",
-                    "Authorization": token
-            ]
+                    "Authorization": token]
         }
     }
 }

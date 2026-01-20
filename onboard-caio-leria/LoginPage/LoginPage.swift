@@ -49,7 +49,7 @@ struct LoginView: View {
                 .padding(.horizontal)
             }
         }
-        .onChange(of: viewModel.isLoggedIn){ oldValue, newValue in
+        .onChange(of: viewModel.isLoggedIn) { _, _ in
             path.append("UsersView")
         }
         if !viewModel.validationErrorText.isEmpty {

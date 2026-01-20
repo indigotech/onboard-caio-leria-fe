@@ -15,7 +15,7 @@ struct LoginResponse: Codable {
 
 struct LoginError: Codable {
     let errors: [ErrorResponse]?
-    
+
     struct ErrorResponse: Codable {
         let name: String
         let code: Int

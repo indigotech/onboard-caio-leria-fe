@@ -26,7 +26,7 @@ class LoginViewModel: ObservableObject {
     }
     
     func validatingCredentials() {
-        if !isEmailValid && !isPasswordValid {
+        if !isEmailValid, !isPasswordValid {
             validationErrorText = "Credenciais inválidas"
         } else if !isPasswordValid {
             validationErrorText = "Senha inválida"
@@ -41,7 +41,7 @@ class LoginViewModel: ObservableObject {
         var loginData = Login()
         loginData.email = email
         loginData.password = password
-        isLoading=true
+        isLoading = true
         provider.request(.login(loginData)) { result in
             switch result {
             case .success(let response):

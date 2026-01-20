@@ -1,16 +1,15 @@
 import Combine
 import Foundation
 import Moya
-import SwiftUI
 import RxMoya
 import RxSwift
+import SwiftUI
 
 class SignUpViewModel: ObservableObject {
-    @Published var user: SignUpUser = .init(email: "", name: "",  password: "", birthDate: Date(), phone: "", role: .user)
+    @Published var user: SignUpUser = .init(email: "", name: "", password: "", birthDate: Date(), phone: "", role: .user)
     @Published var textError: String = ""
     @Published var isSignUp: Bool = false
     let provider = MoyaProvider<LoginService>(
-        
     )
     let disposeBag = DisposeBag()
     
@@ -26,6 +25,7 @@ class SignUpViewModel: ObservableObject {
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailTest.evaluate(with: user.email) && !user.email.isEmpty
     }
+
     var isPhoneValid: Bool {
         let phoneRegex = "^[0-9]{10,11}$"
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
@@ -49,21 +49,18 @@ class SignUpViewModel: ObservableObject {
     }
     
     func SignUp() {
-        self.textError = ""
-        self.isSignUp = false
+        textError = ""
+        isSignUp = false
         provider.rx.request(LoginService.signUp(user))
             .filterSuccessfulStatusCodes()
             .observe(on: MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] _ in
                 self?.isSignUp = true
-            }, onFailure: {[weak self] error in
+            }, onFailure: { [weak self] error in
                 if let moyaError = error as? MoyaError, let reponse = moyaError.response {
                     let errorResponse = try? reponse.map(SignUpError.self)
                     self?.textError = errorResponse?.errors?.first?.message ?? "Algo deu errado"
                 }
             }).disposed(by: disposeBag)
     }
-    
 }
-
-
