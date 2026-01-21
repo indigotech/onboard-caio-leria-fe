@@ -21,8 +21,8 @@ extension LoginService: TargetType {
         case .login: return "/authenticate"
         case .fetchUser: return "/users"
         case .signUp: return "/users"
-        case .userDetails (let id): return "/users/\(id)"
-        }
+        case .userDetails(let id): return "/users/\(id)"
+        }   
     }
     
     var method: Moya.Method {
@@ -54,8 +54,8 @@ extension LoginService: TargetType {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .formatted(dateFormatter)
             return .requestCustomJSONEncodable(userData, encoder: encoder)
-        case .userDetails(let userDetailData):
-            return .requestJSONEncodable(userDetailData)
+        case .userDetails:
+            return .requestPlain
         }
         
     }

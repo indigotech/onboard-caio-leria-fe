@@ -11,7 +11,7 @@ struct SignUpView: View {
                     "Nome e sobrenome",
                     text: $signUpViewModel.user.name
                 )
-                if !signUpViewModel.isNameValid && signUpViewModel.user.name.isEmpty {
+                if !signUpViewModel.isNameValid && signUpViewModel.user.name != "" {
                     Text("Digite seu nome e sobrenome")
                         .font(Font.caption.italic())
                         .foregroundColor(.red)
@@ -21,7 +21,7 @@ struct SignUpView: View {
                     "E-mail",
                     text: $signUpViewModel.user.email
                 )
-                if !signUpViewModel.isEmailValid && signUpViewModel.user.email.isEmpty {
+                if !signUpViewModel.isEmailValid && signUpViewModel.user.email != "" {
                     Text("Digite um email válido")
                         .font(Font.caption.italic())
                         .foregroundColor(.red)
@@ -30,7 +30,7 @@ struct SignUpView: View {
                     "Senha",
                     text: $signUpViewModel.user.password
                 )
-                if !signUpViewModel.isPasswordValid && signUpViewModel.user.password.isEmpty {
+                if !signUpViewModel.isPasswordValid && signUpViewModel.user.password != "" {
                     Text("A senha deve conter pelo menos 7 caracteres e pelo menos 1 número")
                         .font(Font.caption.italic())
                         .foregroundColor(.red)
@@ -39,7 +39,7 @@ struct SignUpView: View {
                     "Telefone",
                     text: $signUpViewModel.user.phone
                 )
-                if !signUpViewModel.isPhoneValid && signUpViewModel.user.phone.isEmpty {
+                if !signUpViewModel.isPhoneValid && signUpViewModel.user.phone != "" {
                     Text("Digite um número válido")
                         .font(Font.caption.italic())
                         .foregroundColor(.red)
