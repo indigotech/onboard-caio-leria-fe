@@ -46,4 +46,5 @@ class UsersViewModel: ObservableObject {
     func fetchUsers() {
         loadNextPage.onNext(())
     }
+    
 }

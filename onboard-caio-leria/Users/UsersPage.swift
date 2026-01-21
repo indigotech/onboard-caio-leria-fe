@@ -4,15 +4,17 @@ import SwiftUI
 struct UsersView: View {
     @StateObject var viewModel = UsersViewModel()
     @Binding var path: NavigationPath
-
+    
     var body: some View {
         ZStack {
             List(viewModel.users, id: \.id) { user in
-                VStack(alignment: .leading) {
-                    Text(user.name)
-                        .font(.title2)
-                    Text(user.email)
-                        .font(.caption)
+                NavigationLink(value: "UserDetailView:\(user.id!)"){
+                    VStack(alignment: .leading) {
+                        Text(user.name)
+                            .font(.title2)
+                        Text(user.email)
+                            .font(.caption)
+                    }
                 }
                 .onAppear {
                     if user.id == self.viewModel.users.last?.id {
@@ -21,7 +23,6 @@ struct UsersView: View {
                 }
             }
             .navigationTitle("Usuários")
-
             VStack {
                 Spacer()
                 HStack {
@@ -36,6 +37,9 @@ struct UsersView: View {
                 }
             }
         }
-        .onAppear { viewModel.fetchUsers() }
+        .onAppear {
+            self.viewModel.fetchUsers()
+        }
+        
     }
 }
