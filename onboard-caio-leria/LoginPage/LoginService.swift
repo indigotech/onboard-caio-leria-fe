@@ -8,21 +8,23 @@ enum LoginService {
     case login(Login)
     case fetchUser(offset: Int, limit: Int)
     case signUp(SignUpUser)
+    case userDetails(id: String)
 }
 
 extension LoginService: TargetType {
     var baseURL: URL {
         return URL(string: SERVER_BASE_URL)!
     }
-
+    
     var path: String {
         switch self {
         case .login: return "/authenticate"
         case .fetchUser: return "/users"
         case .signUp: return "/users"
+        case .userDetails (let id): return "/users/\(id)"
         }
     }
-
+    
     var method: Moya.Method {
         switch self {
         case .login:
@@ -31,9 +33,11 @@ extension LoginService: TargetType {
             return .get
         case .signUp:
             return .post
+        case .userDetails:
+            return .get
         }
     }
-
+    
     var task: Task {
         switch self {
         case .login(let loginData):
@@ -50,9 +54,12 @@ extension LoginService: TargetType {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .formatted(dateFormatter)
             return .requestCustomJSONEncodable(userData, encoder: encoder)
+        case .userDetails(let userDetailData):
+            return .requestJSONEncodable(userDetailData)
         }
+        
     }
-
+    
     var headers: [String: String]? {
         switch self {
         case .login:
@@ -65,6 +72,11 @@ extension LoginService: TargetType {
                 "Authorization": token
             ]
         case .signUp:
+            let token = UserDefaults.standard.string(forKey: "token")?
+                .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            return ["Content-Type": "application/json",
+                    "Authorization": token]
+        case .userDetails:
             let token = UserDefaults.standard.string(forKey: "token")?
                 .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             return ["Content-Type": "application/json",
