@@ -5,6 +5,7 @@ struct UserDetailView: View {
     @StateObject var userDetailViewModel = UserDetailViewModel()
     var userId: String
     var body: some View {
+        H1(text: "Detalhes do usuário")
         VStack {
             HStack {
                 Text("Name: ")
@@ -40,7 +41,6 @@ struct UserDetailView: View {
             }
         }
         .padding(.leading)
-        .navigationTitle(Text("Detalhes do usuário"))
         .onAppear {
             userDetailViewModel.showDetails(id: userId)
         }

@@ -6,6 +6,7 @@ struct UsersView: View {
     @Binding var path: NavigationPath
     
     var body: some View {
+        H1(text: "Usuários")
         ZStack {
             List(viewModel.users, id: \.id) { user in
                 NavigationLink(value: "UserDetailView:\(user.id!)"){
@@ -22,7 +23,6 @@ struct UsersView: View {
                     }
                 }
             }
-            .navigationTitle("Usuários")
             VStack {
                 Spacer()
                 HStack {

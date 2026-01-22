@@ -5,19 +5,16 @@ struct InputText: View {
     var placeholder: String
     @Binding var input: String
     var body: some View {
-        VStack {
-            Text(title)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.title2)
+        VStack(spacing: 5) {
+            Label(text: title)
             TextField(
                 placeholder,
                 text: $input
             )
-            .border(Color.gray)
-            .foregroundStyle(.black)
+            .padding(10)
+            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color(.gray), lineWidth: 1))
         }
         .padding(.horizontal)
         .padding(.bottom, 2)
     }
 }
-

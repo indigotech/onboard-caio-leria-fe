@@ -6,6 +6,7 @@ struct SignUpView: View {
     
     var body: some View {
         VStack {
+            H1(text: "Cadastro")
             Form {
                 InputText(title: "Nome", placeholder: "Nome e sobrenome", input: $signUpViewModel.user.name)
                 if !signUpViewModel.isNameValid && !signUpViewModel.user.name.isEmpty {
@@ -13,7 +14,7 @@ struct SignUpView: View {
                         .font(Font.caption.italic())
                         .foregroundColor(.red)
                 }
-                InputText(title: "e-mail", placeholder: "Email@email.com", input: $signUpViewModel.user.email)
+                InputText(title: "E-mail", placeholder: "Email@email.com", input: $signUpViewModel.user.email)
                 if !signUpViewModel.isEmailValid && !signUpViewModel.user.email.isEmpty {
                     Text("Digite um email válido")
                         .font(Font.caption.italic())
@@ -60,8 +61,7 @@ struct SignUpView: View {
                 if !signUpViewModel.textError.isEmpty {
                     Text(signUpViewModel.textError)
                 }
-             }
+            }
         }
-        .navigationTitle(Text("Sign Up"))
     }
 }
