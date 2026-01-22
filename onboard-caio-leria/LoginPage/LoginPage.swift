@@ -7,20 +7,7 @@ struct LoginView: View {
     var body: some View {
         Text("Bem vindo(a) à Taqtile!")
             .font(.largeTitle).fontWeight(.bold)
-        VStack {
-            Text("Login")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.title2)
-            TextField(
-                "seuemail@email.com",
-                text: $viewModel.email
-            )
-            .border(Color.gray)
-            .foregroundStyle(.black)
-        }
-        .padding(.horizontal)
-        .padding(.bottom, 2)
-        
+        InputText(title: "Login",placeholder: "seuemail@email.com", input: $viewModel.email)
         VStack {
             Text("Senha")
                 .frame(maxWidth: .infinity, alignment: .leading)
