@@ -4,17 +4,17 @@ struct User: Codable, Identifiable {
     var id: String?
     var name: String
     var email: String
-    var phone: String
+    
 }
 
 struct UserResponse: Codable {
     let data: DataContainer
-
+    
     struct DataContainer: Codable {
         let nodes: [User]
         let pageInfo: PageInfo
     }
-
+    
     struct PageInfo: Codable {
         let limit: Int
         let offset: Int
@@ -31,19 +31,33 @@ struct SignUpUser: Codable, Identifiable {
     var birthDate: Date
     var phone: String
     var role: Roles
-
+    
     enum Roles: String, Codable, CaseIterable {
         case user = "User"
         case admin = "Admin"
     }
 }
 
-struct SignUpError: Codable {
+struct DataErrors: Codable {
     let errors: [ErrorResponse]?
-
+    
     struct ErrorResponse: Codable {
         let name: String
         let code: Int
         let message: String
     }
+}
+
+
+struct ResponseUserDetail: Codable {
+    let data: UserDetail
+}
+struct UserDetail: Codable, Identifiable {
+    var id: String?
+    var name: String
+    var email: String
+    var birthDate: Date
+    var phone: String
+    var role: String
+    
 }

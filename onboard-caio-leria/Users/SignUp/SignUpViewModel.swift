@@ -58,7 +58,7 @@ class SignUpViewModel: ObservableObject {
                 self?.isSignupSuccessful = true
             }, onFailure: { [weak self] error in
                 if let moyaError = error as? MoyaError, let reponse = moyaError.response {
-                    let errorResponse = try? reponse.map(SignUpError.self)
+                    let errorResponse = try? reponse.map(DataErrors.self)
                     self?.textError = errorResponse?.errors?.first?.message ?? "Algo deu errado"
                 }
             }).disposed(by: disposeBag)

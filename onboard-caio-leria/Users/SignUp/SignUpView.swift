@@ -6,40 +6,28 @@ struct SignUpView: View {
     
     var body: some View {
         VStack {
+            H1(text: "Cadastro")
             Form {
-                TextField(
-                    "Nome e sobrenome",
-                    text: $signUpViewModel.user.name
-                )
-                if !signUpViewModel.isNameValid && signUpViewModel.user.name.isEmpty {
+                InputText(title: "Nome", placeholder: "Nome e sobrenome", input: $signUpViewModel.user.name)
+                if !signUpViewModel.isNameValid && !signUpViewModel.user.name.isEmpty {
                     Text("Digite seu nome e sobrenome")
                         .font(Font.caption.italic())
                         .foregroundColor(.red)
                 }
-                    
-                TextField(
-                    "E-mail",
-                    text: $signUpViewModel.user.email
-                )
-                if !signUpViewModel.isEmailValid && signUpViewModel.user.email.isEmpty {
+                InputText(title: "E-mail", placeholder: "Email@email.com", input: $signUpViewModel.user.email)
+                if !signUpViewModel.isEmailValid && !signUpViewModel.user.email.isEmpty {
                     Text("Digite um email válido")
                         .font(Font.caption.italic())
                         .foregroundColor(.red)
                 }
-                TextField(
-                    "Senha",
-                    text: $signUpViewModel.user.password
-                )
-                if !signUpViewModel.isPasswordValid && signUpViewModel.user.password.isEmpty {
+                InputText(title: "Senha", placeholder: "", input: $signUpViewModel.user.password)
+                if !signUpViewModel.isPasswordValid && signUpViewModel.user.password != "" {
                     Text("A senha deve conter pelo menos 7 caracteres e pelo menos 1 número")
                         .font(Font.caption.italic())
                         .foregroundColor(.red)
                 }
-                TextField(
-                    "Telefone",
-                    text: $signUpViewModel.user.phone
-                )
-                if !signUpViewModel.isPhoneValid && signUpViewModel.user.phone.isEmpty {
+                InputText(title: "Telefone", placeholder: "11999999999", input: $signUpViewModel.user.phone)
+                if !signUpViewModel.isPhoneValid && !signUpViewModel.user.phone.isEmpty {
                     Text("Digite um número válido")
                         .font(Font.caption.italic())
                         .foregroundColor(.red)
@@ -73,8 +61,7 @@ struct SignUpView: View {
                 if !signUpViewModel.textError.isEmpty {
                     Text(signUpViewModel.textError)
                 }
-             }
+            }
         }
-        .navigationTitle(Text("Sign Up"))
     }
 }
